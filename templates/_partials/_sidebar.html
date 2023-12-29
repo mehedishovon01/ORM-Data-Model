@@ -1,0 +1,125 @@
+{% load static %}
+<!-- ASIDE -->
+<div id="aside" class="col-md-3">
+    <!-- aside Widget -->
+    <div class="aside">
+        <h3 class="aside-title">Categories</h3>
+        <div class="checkbox-filter">
+            
+            {% for category in categories %}
+            <div class="input-checkbox">
+                <input class="filter-checkbox category-checkbox" type="checkbox" value="{{ category.id }}" id="category-{{ category.id }}">
+                <label for="category-{{ category.id }}">
+                    <span></span>
+                    {{ category.name }}
+                </label>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+    <!-- /aside Widget -->
+
+    <!-- aside Widget -->
+    <div class="aside">
+        <h3 class="aside-title">Brand</h3>
+        <div class="checkbox-filter">
+            
+            {% for brand in brands %}
+            <div class="input-checkbox">
+                <input class="filter-checkbox brand-checkbox" type="checkbox" value="{{ brand.id }}" id="brand-{{ brand.id }}">
+                <label for="brand-{{ brand.id }}">
+                    <span></span>
+                    {{ brand.name }}
+                </label>
+            </div>
+            {% endfor %}
+     
+        </div>
+    </div>
+    <!-- /aside Widget -->
+
+    <!-- aside Widget -->
+    <div class="aside">
+        <h3 class="aside-title">Warranty</h3>
+        <div class="checkbox-filter">
+            
+            {% for warranty in warranty %}
+            <div class="input-checkbox">
+                <input class="filter-checkbox warranty-checkbox" type="checkbox" value="{{ warranty.id }}" id="warranty-{{ warranty.id }}">
+                <label for="warranty-{{ warranty.id }}">
+                    <span></span>
+                    {{ warranty.duration }}
+                </label>
+            </div>
+            {% endfor %}
+        
+        </div>
+    </div>
+    <!-- /aside Widget -->
+
+        <!-- aside Widget -->
+    <div class="aside">
+        <h3 class="aside-title">Seller</h3>
+        <div class="checkbox-filter">
+            
+            {% for seller in sellers %}
+            <div class="input-checkbox">
+                <input class="filter-checkbox seller-checkbox" type="checkbox" value="{{ seller.id }}" id="seller-{{ seller.id }}">
+                <label for="seller-{{ seller.id }}">
+                    <span></span>
+                    {{ seller.name }}
+                </label>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+    <!-- /aside Widget -->
+    
+</div>
+<!-- /ASIDE -->
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    $(document).ready(function() {
+        // Attach event handler to all checkboxes with class 'filter-checkbox'
+        $('.filter-checkbox').change(updateFilters);
+
+        function updateFilters() {
+            // Get selected values for each filter
+            var selectedCategories = getSelectedValues('.category-checkbox');
+            var selectedBrands = getSelectedValues('.brand-checkbox');
+            var selectedWarranty = getSelectedValues('.warranty-checkbox');
+            var selectedSellers = getSelectedValues('.seller-checkbox');
+
+            // Hide all products
+            $('.product').hide();
+
+            // Show products based on selected filters
+            showProductsByFilter('category', selectedCategories);
+            showProductsByFilter('brand', selectedBrands);
+            showProductsByFilter('warranty', selectedWarranty);
+            showProductsByFilter('seller', selectedSellers);
+
+            // Show all products if no filters are selected
+            if (selectedCategories.length === 0 && selectedBrands.length === 0 && selectedWarranty.length === 0 && selectedSellers.length === 0) {
+                $('.product').show();
+            }
+        }
+
+        function getSelectedValues(checkboxClass) {
+            // Get an array of selected values for a given checkbox class
+            return $(checkboxClass + ':checked').map(function() {
+                return this.value;
+            }).get();
+        }
+
+        function showProductsByFilter(filterType, selectedValues) {
+            // Show products based on a specific filter type and selected values
+            $.each(selectedValues, function(index, value) {
+                $('.product.' + filterType + '-' + value).show();
+            });
+        }
+    });
+</script>
