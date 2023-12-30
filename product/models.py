@@ -46,7 +46,6 @@ class Warranty(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
-
     def __str__(self):
         """
         The __str__ method in a Django model is a special method that defines the human-readable representation of an object.  
@@ -63,7 +62,6 @@ class Seller(models.Model):
     created_by = models.ForeignKey(User, blank=True, null=True, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-
 
     def __str__(self):
         """

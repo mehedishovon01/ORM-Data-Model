@@ -1,20 +1,24 @@
 from django.shortcuts import render
+from django.views.generic import ListView
 from .models import Category, Brand, Warranty, Seller, Product
 
-# Create your views here.
-def product_list(request):
-    products = Product.objects.all()
-    categories = Category.objects.all()
-    brands = Brand.objects.all()
-    warranty = Warranty.objects.all()
-    seller = Seller.objects.all()
+# Class based (list-view) views.
+class ProductListView(ListView):
+    """
+    Display a paginated list of products with additional filtering options.
+    """
+    model = Product
+    template_name = 'products.html'
+    context_object_name = 'products'
+    paginate_by = 20
 
-    context = {
-        'products': products, 
-        'categories': categories, 
-        'brands': brands,
-        'warranty': warranty,
-        'sellers': seller,
-        }
-
-    return render(request, 'products.html', context)
+    def get_context_data(self, **kwargs):
+        """
+        Add additional context data for rendering the template.
+        """
+        context = super().get_context_data(**kwargs)
+        context['categories'] = Category.objects.all()
+        context['brands'] = Brand.objects.all()
+        context['warranty'] = Warranty.objects.all()
+        context['sellers'] = Seller.objects.all()
+        return context
