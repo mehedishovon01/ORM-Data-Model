@@ -89,11 +89,25 @@ WSGI_APPLICATION = 'OrmDataModel.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': BASE_DIR / 'db.sqlite3',
+    # }
+
+    'default': {  
+        'ENGINE': 'django.db.backends.mysql',  
+        'NAME': 'ormdatamodel',
+        'USER': 'mehedishovon01',  
+        'PASSWORD': 'WrongPass01@',  
+        'HOST': 'mehedishovon01.mysql.pythonanywhere-services.com',  
+        'PORT': '3306',  
+        'OPTIONS': {  
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"  
+            }
     }
 }
+
+# WrongPass01@
 
 
 # Password validation
