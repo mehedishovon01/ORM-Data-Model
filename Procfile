@@ -1,1 +1,0 @@
-web: gunicorn 'OrmDataModel.wsgi' --log-file -

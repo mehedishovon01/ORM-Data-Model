@@ -10,16 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
-import os
 from pathlib import Path
-
-# import dj_database_url
-
-# DATABASE_URL = "postgresql://postgres:BB6d5bD*f5fg2Fg6fd4dFdg2c1c5CE-c@viaduct.proxy.rlwy.net:57796/railway"
-
-# DATABASES = {
-#     "default": dj_database_url.config(default=DATABASE_URL, conn_max_age=1800),
-# }
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -34,7 +25,7 @@ SECRET_KEY = 'django-insecure-c@yhuds136_iou2)t3)^_d6)hkl6x(=c)8^1#aqq5if^(-%07$
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -49,7 +40,6 @@ INSTALLED_APPS = [
 
     # Installed Apps
     'product.apps.ProductConfig',
-    'whitenoise.runserver_nostatic',
 ]
 
 MIDDLEWARE = [
@@ -60,8 +50,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    
-    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'OrmDataModel.urls'
@@ -89,25 +77,11 @@ WSGI_APPLICATION = 'OrmDataModel.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.sqlite3',
-    #     'NAME': BASE_DIR / 'db.sqlite3',
-    # }
-
-    'default': {  
-        'ENGINE': 'django.db.backends.mysql',  
-        'NAME': 'ormdatamodel',
-        'USER': 'mehedishovon01',  
-        'PASSWORD': 'WrongPass01@',  
-        'HOST': 'mehedishovon01.mysql.pythonanywhere-services.com',  
-        'PORT': '3306',  
-        'OPTIONS': {  
-            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"  
-            }
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
-# WrongPass01@
 
 
 # Password validation
@@ -144,24 +118,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-# STATIC_URL = 'static/'
-# STATICFILES_DIRS = (
-#     BASE_DIR/'static',
-# )
-
-# STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-# STATIC_ROOT =os.path.join(BASE_DIR, 'staticfiles')
-
 STATIC_URL = 'static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATICFILES_STORAGE="whitenoise.storage.CompressedManifestStaticFilesStorage"
+STATICFILES_DIRS = (
+    BASE_DIR/'static',
+)
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-
-CSRF_TRUSTED_ORIGINS = [
-    'https://orm-data-model-production.up.railway.app'
-]
