@@ -81,6 +81,8 @@
 <!-- /ASIDE -->
 
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<!-- For Managing The Realtime Filtering Using the JS -->
 <script>
     $(document).ready(function() {
         // Attach event handler to all checkboxes with class 'filter-checkbox'
@@ -109,7 +111,6 @@
         }
 
         function getSelectedValues(checkboxClass) {
-            // Get an array of selected values for a given checkbox class
             return $(checkboxClass + ':checked').map(function() {
                 return this.value;
             }).get();

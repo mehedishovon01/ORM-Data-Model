@@ -5,6 +5,7 @@ from .models import Category, Brand, Warranty, Seller, Product
 # Class based (list-view) views.
 class ProductListView(ListView):
     """
+    This function is used for a ListView of all the products and 
     Display a paginated list of products with additional filtering options.
     """
     model = Product
@@ -14,7 +15,9 @@ class ProductListView(ListView):
 
     def get_context_data(self, **kwargs):
         """
+        Get all the Category, Brand, Warranty & Seller data from database. 
         Add additional context data for rendering the template.
+        -:return: string
         """
         context = super().get_context_data(**kwargs)
         context['categories'] = Category.objects.all()
