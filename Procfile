@@ -1,1 +1,1 @@
-web: gunicorn 'OrmDataModel.wsgi'
+web: gunicorn OrmDataModel.wsgi
