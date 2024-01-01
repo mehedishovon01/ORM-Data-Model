@@ -13,13 +13,13 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 import os
 from pathlib import Path
 
-import dj_database_url
+# import dj_database_url
 
-DATABASE_URL = "postgresql://postgres:BB6d5bD*f5fg2Fg6fd4dFdg2c1c5CE-c@viaduct.proxy.rlwy.net:57796/railway"
+# DATABASE_URL = "postgresql://postgres:BB6d5bD*f5fg2Fg6fd4dFdg2c1c5CE-c@viaduct.proxy.rlwy.net:57796/railway"
 
-DATABASES = {
-    "default": dj_database_url.config(default=DATABASE_URL, conn_max_age=1800),
-}
+# DATABASES = {
+#     "default": dj_database_url.config(default=DATABASE_URL, conn_max_age=1800),
+# }
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
