@@ -81,6 +81,10 @@ class Product(models.Model):
     warranty = models.ForeignKey(Warranty, on_delete=models.CASCADE)
     seller = models.ForeignKey(Seller, on_delete=models.CASCADE)
     price = models.DecimalField(max_digits=10, decimal_places=2)
+    image = models.ImageField(default='image/default.jpeg', 
+                              upload_to='image',
+                              blank=True,
+                              null=True)
     created_by = models.ForeignKey(User, blank=True, null=True, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
